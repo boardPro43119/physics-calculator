@@ -51,6 +51,54 @@ public class PhysicsCalculator {
 
 					break;
 				case "displacement":
+					do
+					{
+						try {
+							invalidInput = false;
+							System.out.println("Enter the following given values:");
+							System.out.print("Initial velocity (m/s): ");
+							initVelocity = in.nextDouble();
+							System.out.print("Time (s): ");
+							time = in.nextDouble();
+							System.out.print("Do you know (1) acceleration or (2) final velocity? ");
+							
+							input = in.next();
+							switch(input){
+								case "1":
+									System.out.print("Acceleration (m/s^2): ");
+									acceleration = in.nextDouble();
+									displacement = (initVelocity*time)+(0.5*acceleration*time*time);
+									System.out.println("Displacement: " + displacement + " meters");
+									break;
+								case "acceleration":
+									System.out.print("Acceleration (m/s^2): ");
+									acceleration = in.nextDouble();
+									displacement = (initVelocity*time)+(0.5*acceleration*time*time);
+									System.out.println("Displacement: " + displacement + " meters");
+									break;
+								case "2":
+									System.out.print("Final velocity (m/s): ");
+									finalVelocity = in.nextDouble();
+									displacement = 0.5*(initVelocity+finalVelocity)*time;
+									System.out.println("Displacement: " + displacement + " meters");
+									break;
+								case "final velocity":
+									System.out.print("Final velocity (m/s): ");
+									finalVelocity = in.nextDouble();
+									displacement = 0.5*(initVelocity+finalVelocity)*time;
+									System.out.println("Displacement: " + displacement + " meters");
+									break;
+								default:
+									invalidInput=true;
+							}
+						} catch(RuntimeException e) {
+							System.out.println("Invalid input, please try again.");
+							in.next();
+							invalidInput = true;
+						}
+					}
+					while(invalidInput);
+					break;
 
 				case "initial velocity":
 
