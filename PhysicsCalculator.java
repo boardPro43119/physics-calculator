@@ -1,12 +1,13 @@
 /**
  * Benjamin Prud'homme
- * Latest commit: February 20, 2016
+ * Latest commit: February 27, 2016
  *
  * Solves for one value given several others from the following list:
  * displacement, initial velocity, final velocity, acceleration, and time.
  */
 
 import java.util.Scanner;
+import java.math.*;
 public class PhysicsCalculator {
 	public static void main(String[] args){
 		Scanner in = new Scanner(System.in);
@@ -95,7 +96,46 @@ public class PhysicsCalculator {
 				case "initial velocity":
 
 				case "final velocity":
-
+					do
+					{
+						try {
+							invalidInput = false;
+							System.out.println("Enter the following given values:");
+							System.out.print("Initial velocity (m/s): ");
+							initVelocity = in.nextDouble();
+							System.out.print("Acceleration (m/s): ");
+							acceleration = in.nextDouble();
+							in.nextLine(); //consume newline character from input stream
+							System.out.print("Do you know (1) displacement or (2) time? ");
+							
+							input = in.nextLine();
+							switch(input){
+								case "1":
+								case "displacement":
+									System.out.print("Displacement (m): ");
+									displacement = in.nextDouble();
+									finalVelocity = Math.sqrt(Math.pow(initVelocity, 2)+(2*acceleration*displacement));
+									System.out.println("Final velocity: " + finalVelocity + " m/s");
+									break;
+								case "2":
+								case "time":
+									System.out.print("Time (s): ");
+									time = in.nextDouble();
+									finalVelocity = initVelocity+(acceleration*time);
+									System.out.println("Final velocity: " + finalVelocity + " m/s");
+									break;
+								default:
+									System.out.println("Invalid input, please try again.");
+									invalidInput=true;
+							}
+						} catch(RuntimeException e) {
+							System.out.println("Invalid input, please try again.");
+							in.next();
+							invalidInput = true;
+						}
+					}
+					while(invalidInput);
+					break;
 				case "time":
 
 				default:
