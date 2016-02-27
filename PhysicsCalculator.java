@@ -7,7 +7,6 @@
  */
 
 import java.util.Scanner;
-import java.math.*;
 public class PhysicsCalculator {
 	public static void main(String[] args){
 		Scanner in = new Scanner(System.in);
